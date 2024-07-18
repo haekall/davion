@@ -153,15 +153,6 @@ export class Renderer {
       options?: object): Promise<Buffer> {
     const page = await this.browser.newPage();
 
-    // Page may reload when setting isMobile
-    // https://github.com/GoogleChrome/puppeteer/blob/v1.10.0/docs/api.md#pagesetviewportviewport
-    await page.setViewport(
-        {width: dimensions.width, height: dimensions.height, isMobile});
-
-    if (isMobile) {
-      page.setUserAgent(MOBILE_USERAGENT);
-    }
-
     let response: puppeteer.Response|null = null;
 
     try {
